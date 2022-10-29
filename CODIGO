@@ -1,0 +1,357 @@
+# Proyecto-Poo
+IZYALI HARO SANDOVAL 
+
+#include <iostream>
+#include <cstdlib>
+#include <sstream>
+#include <fstream>
+
+using namespace std;
+
+class Persona
+{
+private:
+	int opcionb, opcionc;
+	string nombreIFE, nombrePasaporte, edadIFE, edadPasaporte, sexoIFE, sexoPasaporte, curpIFE, curpPasaporte, domicilioIFE, domicilioPasaporte, fechaDeNacimientoIFE, fechaDeNacimientoPasaporte, folioIFE, numeroPasaporte;
+public:
+	Persona(int op2, int op3, string nom1, string nom2, string edad1, string edad2, string sexo1, string sexo2, string curp1, string curp2, string dom1, string dom2, string fechN1, string fechN2, string clave, string pass)
+	{
+		opcionb = op2;
+		opcionc = op3;
+		nombreIFE = nom1;
+		nombrePasaporte = nom2;
+		edadIFE = edad1;
+		edadPasaporte = edad2;
+		sexoIFE = sexo1;
+		sexoPasaporte = sexo2;
+		curpIFE = curp1;
+		curpPasaporte = curp2;
+		domicilioIFE = dom1;
+		domicilioPasaporte = dom2;
+		fechaDeNacimientoIFE = fechN1;
+		fechaDeNacimientoPasaporte = fechN2;
+		numeroPasaporte = pass;
+		folioIFE = clave;
+	}
+
+	int validacionGeneral()
+	{
+		if (nombreIFE == nombrePasaporte && edadIFE == edadPasaporte && sexoIFE == sexoPasaporte && curpIFE == curpPasaporte && domicilioIFE == domicilioPasaporte && fechaDeNacimientoIFE == fechaDeNacimientoPasaporte)
+		{
+			if (opcionc == 1)
+			{
+				return 1;
+			}
+			else if (opcionc == 2)
+			{
+				return 0;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		else
+		{
+			if (opcionc == 1)
+			{
+				return 0;
+			}
+			else if (opcionc == 2)
+			{
+				return 1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+	}
+
+	int validacionDeErrores()
+	{
+		int puntos = 0;
+		switch (opcionb)
+		{
+		case 1:
+			if (nombreIFE != nombrePasaporte)
+			{
+				puntos++;
+			}
+			else
+			{
+				cout << "Fallaste en nombre\n";
+			}
+			break;
+		case 2:
+			if (edadIFE != edadPasaporte)
+			{
+				puntos++;
+			}
+			else
+			{
+				cout << "Fallaste en la edad\n";
+			}
+			break;
+		case 3:
+			if (sexoIFE != sexoPasaporte)
+			{
+				puntos++;
+			}
+			else
+			{
+				cout << "Fallaste en sexo\n";
+			}
+			break;
+		case 4:
+			if (curpIFE != curpPasaporte)
+			{
+				puntos++;
+			}
+			else
+			{
+				cout << "Fallaste en curp\n";
+			}
+			break;
+		case 5:
+			if (domicilioIFE != domicilioPasaporte)
+			{
+				puntos++;
+			}
+			else
+			{
+				cout << "Fallaste en domicilio\n";
+			}
+			break;
+		case 6:
+			if (fechaDeNacimientoIFE != fechaDeNacimientoPasaporte)
+			{
+				puntos++;
+			}
+			else
+			{
+				cout << "Fallaste en fecha de nacimiento\n";
+			}
+			break;
+		case 7:
+			return 0;
+			break;
+		default:
+			cout << "\nError esa opcion no existe\n\n";
+			break;
+		}
+		return puntos;
+	}
+};
+
+int main()
+{
+	int opciona = 0, opcionb = 0, opcionc = 0, opciond = 0;
+	string NombresIFE[6], NombresPasaporte[6], EdadesIFE[6], EdadesPasaporte[6], SexosIFE[6], SexosPasaporte[6], CurpsIFE[6], CurpsPasaporte[6], DomiciliosIFE[6], DomiciliosPasaporte[6], FechasIFE[6], FechasPasaporte[6], NumsPasaporte[6], FoliosIFE[6];
+	int i = 0, partida = 0, puntosTerrorista = 0, puntosErrores = 0;
+	string lectura;
+
+	ifstream a1("C:/Users/alons/OneDrive/Desktop/Proyecto del segundo parcial/NOMBRES.txt"); 
+	while (getline(a1, lectura))
+	{
+		NombresIFE[i] = lectura; // la variable guardara la posicion de la cadena por cada salto de linea Nombres IFE
+		i++;
+	}
+	a1.close();
+	ifstream a2("/Users/alons/OneDrive/Desktop/Proyecto del segundo parcial/NAMES PASAPORTE.txt");
+	i = 0;
+	while (getline(a2, lectura))
+	{
+		NombresPasaporte[i] = lectura; // la variable guardara la posicion de la cadena por cada salto de linea Nombres Pass
+		i++;
+	}
+	a2.close();
+
+
+
+	ifstream a3("C:/Users/alons/OneDrive/Desktop/Proyecto del segundo parcial/EDADES.txt");
+	i = 0;
+	while (getline(a3, lectura))
+	{
+		EdadesIFE[i] = lectura;
+		i++;
+	}
+	a3.close();
+	ifstream a4("C:/Users/alons/OneDrive/Desktop/Proyecto del segundo parcial/EDADES PASAPORTE.txt");
+	i = 0;
+	while (getline(a4, lectura))
+	{
+		EdadesPasaporte[i] = lectura;
+		i++;
+	}
+	a4.close();
+
+
+
+	ifstream a5("C:/Users/alons/OneDrive/Desktop/Proyecto del segundo parcial/SEXO.txt");
+	i = 0;
+	while (getline(a5, lectura))
+	{
+		SexosIFE[i] = lectura;
+		i++;
+	}
+	a5.close();
+	ifstream a6("C:/Users/alons/OneDrive/Desktop/Proyecto del segundo parcial/SEXO PASAPORTE.txt");
+	i = 0;
+	while (getline(a6, lectura))
+	{
+		SexosPasaporte[i] = lectura;
+		i++;
+	}
+	a6.close();
+
+
+
+	ifstream a7("C:/Users/alons/OneDrive/Desktop/Proyecto del segundo parcial/CURPS.txt");
+	i = 0;
+	while (getline(a7, lectura))
+	{
+		CurpsIFE[i] = lectura;
+		i++;
+	}
+	a7.close();
+	ifstream a8("C:/Users/alons/OneDrive/Desktop/Proyecto del segundo parcial/CURPS PASAPORTE.txt");
+	i = 0;
+	while (getline(a8, lectura))
+	{
+		CurpsPasaporte[i] = lectura;
+		i++;
+	}
+	a8.close();
+
+
+
+	ifstream a9("C:/Users/alons/OneDrive/Desktop/Proyecto del segundo parcial/DOMICILIOS.txt");
+	i = 0;
+	while (getline(a9, lectura))
+	{
+		DomiciliosIFE[i] = lectura;
+		i++;
+	}
+	a9.close();
+	ifstream a10("C:/Users/alons/OneDrive/Desktop/Proyecto del segundo parcial/DOMICILIOS PASAPORTE.txt");
+	i = 0;
+	while (getline(a10, lectura))
+	{
+		DomiciliosPasaporte[i] = lectura;
+		i++;
+	}
+	a10.close();
+
+
+
+	ifstream a11("C:/Users/alons/OneDrive/Desktop/Proyecto del segundo parcial/FECHA DE NACIMIENTO.txt");
+	i = 0;
+	while (getline(a11, lectura))
+	{
+		FechasIFE[i] = lectura;
+		i++;
+	}
+	a11.close();
+	ifstream a12("C:/Users/alons/OneDrive/Desktop/Proyecto del segundo parcial/FECHA DE NACIMIENTO PASAPORTE.txt");
+	i = 0;
+	while (getline(a12, lectura))
+	{
+		FechasPasaporte[i] = lectura;
+		i++;
+	}
+	a12.close();
+
+
+
+	ifstream a13("C:/Users/alons/OneDrive/Desktop/Proyecto del segundo parcial/CLAVE PASAPORTE.txt");
+	i = 0;
+	while (getline(a13, lectura))
+	{
+		NumsPasaporte[i] = lectura;
+		i++;
+	}
+	a13.close();
+	ifstream a14("C:/Users/alons/OneDrive/Desktop/Proyecto del segundo parcial/CLAVE INE.txt");
+	i = 0;
+	while (getline(a14, lectura))
+	{
+		FoliosIFE[i] = lectura;
+		i++;
+	}
+	a14.close();
+
+	do {
+		cout << "\n\n";
+		cout << "                        IFE";
+		cout << "\n\n";
+		cout << "Nombre:" << NombresIFE[partida] << endl;
+		cout << "Edad:" << EdadesIFE[partida] << endl;
+		cout << "Sexo:" << SexosIFE[partida] << endl;
+		cout << "Curp:" << CurpsIFE[partida] << endl;
+		cout << "Domicilio:" << DomiciliosIFE[partida] << endl;
+		cout << "Fech Na:" << FechasIFE[partida] << endl;
+		cout << "Clave IFE:" << FoliosIFE[partida] << endl;
+		cout << "\n\n";
+		cout << "                       Pasaporte";
+		cout << "\n\n";
+		cout << "Nombre:" << NombresPasaporte[partida] << endl;
+		cout << "Edad:" << EdadesPasaporte[partida] << endl;
+		cout << "Sexo:" << SexosPasaporte[partida] << endl;
+		cout << "Curp:" << CurpsPasaporte[partida] << endl;
+		cout << "Domicilio:" << DomiciliosPasaporte[partida] << endl;
+		cout << "Fech Na:" << FechasPasaporte[partida] << endl;
+		cout << "Num Pasaporte:" << NumsPasaporte[partida] << endl;
+
+		cout << "\n\n";
+		cout << "Todos los datos coinciden?\n1. No\n2. Si" << endl; 
+		cin >> opciona;
+		Persona* individuo;
+		switch (opciona)
+		{
+		case 1:
+			do {
+				cout << "Que datos no coinciden?";
+				cout << "\n1.Nombres  \n2.Edad   \n3.Sexo   \n4.Curp   \n5.Domicilio   \n6.Fecha de nacimiento   \n7.Salir" << endl;
+
+				cin >> opcionb;
+				individuo = new Persona(opcionb, 0, NombresIFE[partida], NombresPasaporte[partida], EdadesIFE[partida], EdadesPasaporte[partida], SexosIFE[partida], SexosPasaporte[partida], CurpsIFE[partida], CurpsPasaporte[partida], DomiciliosIFE[partida], DomiciliosPasaporte[partida], FechasIFE[partida], FechasPasaporte[partida], FoliosIFE[partida], NumsPasaporte[partida]);
+				puntosErrores += individuo->validacionDeErrores();
+			} while (opcionb != 7); //numeros entre el 1 y el 7 haran que salga del do-while
+			cout << "\nDejaras cruzar a la persona?\n1. S\n2. N\n" << endl;
+			cin >> opcionc;
+			Persona* individuo2;
+			individuo2 = new Persona(0, opcionc, NombresIFE[partida], NombresPasaporte[partida], EdadesIFE[partida], EdadesPasaporte[partida], SexosIFE[partida], SexosPasaporte[partida], CurpsIFE[partida], CurpsPasaporte[partida], DomiciliosIFE[partida], DomiciliosPasaporte[partida], FechasIFE[partida], FechasPasaporte[partida], FoliosIFE[partida], NumsPasaporte[partida]);
+			puntosTerrorista += individuo2->validacionGeneral();
+			system("cls");
+			break;
+		case 2:
+			cout << "\nDejaras cruzar a la persona?\n1. S\n2. N\n" << endl;
+			cin >> opcionc;
+			individuo2 = new Persona(0, opcionc, NombresIFE[partida], NombresPasaporte[partida], EdadesIFE[partida], EdadesPasaporte[partida], SexosIFE[partida], SexosPasaporte[partida], CurpsIFE[partida], CurpsPasaporte[partida], DomiciliosIFE[partida], DomiciliosPasaporte[partida], FechasIFE[partida], FechasPasaporte[partida], FoliosIFE[partida], NumsPasaporte[partida]);
+			puntosTerrorista += individuo2->validacionGeneral();
+			break;
+		default:
+			system("cls");
+			cout << "Error";
+			cout << "\n\n";
+		}
+		system("cls");
+		if (partida == 5)
+		{
+			cout << "\nPuntos por no dejar pasar a terroristas: " << puntosTerrorista;
+			cout << "\nErrores encontrados: " << puntosErrores;
+			cout << "\n";
+			cout << "\n\nIntroduzca la opcion\n1. Seguir en el programa\n2. Salir del programa" << endl;
+			cin >> opciond;
+			partida = 0;
+			puntosTerrorista = 0;
+			puntosErrores = 0;
+		}
+		else
+		{
+			partida = partida + 1;
+		}
+		system("cls");
+	} while (opciond != 2);
+}
